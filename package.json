@@ -2,9 +2,10 @@
   "name": "tp-aw1-main",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "five-server"
+    "dev": "five-server",
+    "test": "node --test"
   },
   "keywords": [],
   "author": "",
