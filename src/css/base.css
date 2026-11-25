@@ -120,8 +120,8 @@ h1, h2 {
     margin-bottom: var(--xl);
 }
 
-/* 6. Encabezado  */
-.encabezado {
+/* 6. Encabezado del sitio (header compartido por todas las páginas) */
+.encabezado-sitio {
     position: sticky;
     top: 0;
     z-index: 10;
@@ -135,12 +135,11 @@ h1, h2 {
     border-bottom: 1px solid var(--superficie-alta);
 }
 
-.logo {
-    height: 40px;
-    width: auto;
+.enlace-logo {
+    flex: 0 0 auto;
 }
 
-.menu {
+.menu-principal {
     display: flex;
     flex-wrap: wrap;
     gap: var(--gutter);
@@ -149,26 +148,26 @@ h1, h2 {
     letter-spacing: 0.05em;
 }
 
-.menu a {
+.menu-principal a {
     color: var(--texto-suave);
 }
 
-.menu a:hover {
+.menu-principal a:hover {
     color: var(--primario);
 }
 
-.menu a[aria-current="page"] {
+.menu-principal a[aria-current="page"] {
     color: var(--primario);
     border-bottom: 2px solid var(--secundario-claro);
 }
 
-.acciones {
+.acciones-encabezado {
     display: flex;
     align-items: center;
     gap: var(--md);
 }
 
-.acciones > a:last-child {
+.acciones-encabezado > a:last-child {
     display: grid;
     width: 44px;
     height: 44px;
@@ -178,7 +177,7 @@ h1, h2 {
     transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
 }
 
-.acciones > a:last-child:hover {
+.acciones-encabezado > a:last-child:hover {
     transform: translateY(-2px);
     border-color: var(--superficie-alta);
     background: var(--superficie);
@@ -189,14 +188,81 @@ h1, h2 {
     height: auto;
 }
 
-/* 7. Pie de página */
-.pie {
+/* Botón del menú móvil: oculto por defecto. Solo se muestra en pantallas
+   chicas Y cuando JavaScript está activo (ver .con-js más abajo). */
+.boton-menu {
+    display: none;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    padding: 0;
+    border: 1px solid var(--superficie-alta);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--texto);
+    cursor: pointer;
+}
+
+.boton-menu:focus-visible,
+.menu-principal a:focus-visible {
+    outline: 2px solid var(--primario);
+    outline-offset: 2px;
+}
+
+/* Las tres rayitas se dibujan con un span y sus dos pseudo-elementos. */
+.boton-menu-icono,
+.boton-menu-icono::before,
+.boton-menu-icono::after {
+    display: block;
+    width: 20px;
+    height: 2px;
+    border-radius: 1px;
+    background: currentColor;
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.boton-menu-icono {
+    position: relative;
+}
+
+.boton-menu-icono::before,
+.boton-menu-icono::after {
+    content: "";
+    position: absolute;
+    left: 0;
+}
+
+.boton-menu-icono::before {
+    top: -6px;
+}
+
+.boton-menu-icono::after {
+    top: 6px;
+}
+
+/* Menú abierto: las rayitas forman una "X". */
+.boton-menu[aria-expanded="true"] .boton-menu-icono {
+    background: transparent;
+}
+
+.boton-menu[aria-expanded="true"] .boton-menu-icono::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.boton-menu[aria-expanded="true"] .boton-menu-icono::after {
+    top: 0;
+    transform: rotate(-45deg);
+}
+
+/* 7. Pie de página del sitio */
+.pie-sitio {
     width: 100%;
     background: var(--primario);
     color: var(--blanco);
 }
 
-.pie-contenido {
+.pie-sitio-contenido {
     max-width: var(--ancho-max);
     margin: 0 auto;
     padding: var(--xxl) var(--gutter);
@@ -205,33 +271,38 @@ h1, h2 {
     gap: var(--xl);
 }
 
-.pie h3 {
+/* Es un <h2> (el pie no debe saltar de nivel), pero conserva el aspecto
+   que tenía como <h3>: por eso se fija la tipografía acá. */
+.pie-sitio-titulo {
+    font-family: var(--fuente-texto);
     font-size: 14px;
+    font-weight: 700;
+    line-height: 1.6;
     letter-spacing: 0.05em;
     margin-bottom: var(--md);
 }
 
-.pie li {
+.pie-sitio li {
     font-size: 12px;
     margin-bottom: 12px;
     color: rgba(255, 255, 255, 0.8);
 }
 
-.pie li a:hover {
+.pie-sitio li a:hover {
     text-decoration: underline;
     text-underline-offset: 4px;
 }
 
-.pie p {
+.pie-sitio p {
     color: rgba(255, 255, 255, 0.8);
     font-family: var(--fuente-texto);
 }
 
-.logo-claro {
+.pie-sitio-logo {
     margin-bottom: var(--md);
 }
 
-.derechos {
+.pie-sitio-derechos {
     padding-top: var(--xl);
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     text-align: center;
@@ -240,9 +311,51 @@ h1, h2 {
     grid-column: 1 / -1;
 }
 
-/* 8. Escritorio (desde 768px)*/
+/* 8. Componentes compartidos */
+.migas-pan {
+    margin-bottom: 24px;
+    color: var(--texto-suave);
+}
+
+.migas-pan a {
+    color: var(--texto-suave);
+}
+
+.migas-pan a:hover {
+    color: var(--primario);
+}
+
+.migas-pan span {
+    color: var(--primario);
+    font-weight: 600;
+}
+
+/* 9. Utilidades y elementos semánticos */
+/* Oculta contenido solo visualmente: los lectores de pantalla lo siguen leyendo. */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* <search> es un elemento nuevo (2023): en navegadores viejos se vería en
+   línea. <address> viene en cursiva por defecto: se neutraliza. */
+search {
+    display: block;
+}
+
+address {
+    font-style: normal;
+}
+
+/* 10. Escritorio (desde 768px) */
 @media (min-width: 768px) {
-    .encabezado {
+    .encabezado-sitio {
         padding: 0 var(--gutter);
         height: 80px;
         flex-wrap: nowrap;
@@ -253,65 +366,93 @@ h1, h2 {
         padding-right: var(--gutter);
     }
 
-    .pie-contenido {
+    .pie-sitio-contenido {
         grid-template-columns: repeat(3, 1fr);
     }
 
-    .derechos {
+    .pie-sitio-derechos {
         grid-column: 1 / -1;
     }
 }
 
+/* 11. Móvil (hasta 767px) */
 @media (max-width: 767px) {
-    .encabezado {
-        flex-wrap: nowrap;
+    .encabezado-sitio {
         gap: 10px;
-        padding: 8px var(--md);
     }
 
-    .encabezado > a,
-    .acciones {
-        flex: 0 0 auto;
-    }
-
-    .encabezado > a img {
+    .enlace-logo img {
         width: 76px;
     }
 
-    .encabezado nav {
-        min-width: 0;
-        flex: 1;
-        overflow: hidden;
-    }
-
-    .menu {
-        width: 100%;
-        gap: 12px;
-        overflow-x: auto;
-        white-space: nowrap;
-        font-size: 12px;
-        scrollbar-width: none;
-    }
-
-    .menu::-webkit-scrollbar {
-        display: none;
-    }
-
-    .acciones {
+    .acciones-encabezado {
         gap: 0;
+        margin-left: auto;
     }
 
-    .acciones .boton-oscuro {
+    .acciones-encabezado .boton-oscuro {
         display: none;
     }
 
-    .acciones > a:last-child {
+    .acciones-encabezado > a:last-child {
         width: 36px;
         height: 36px;
     }
 
     .icono-carrito {
         width: 28px;
+    }
+
+    /* SIN JavaScript: el menú queda visible en una segunda fila, para que
+       el sitio siga siendo navegable. */
+    .navegacion-principal {
+        order: 3;
+        flex: 1 0 100%;
+    }
+
+    .menu-principal {
+        gap: 12px;
+        font-size: 13px;
+    }
+
+    /* CON JavaScript (js/menu.js agrega .con-js a <html>): el menú se oculta
+       y se despliega como panel debajo del header al tocar el botón. */
+    .con-js .boton-menu {
+        display: grid;
+    }
+
+    .con-js .navegacion-principal {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        padding: 8px var(--md) 16px;
+        background: var(--fondo);
+        border-bottom: 1px solid var(--superficie-alta);
+        box-shadow: 0 8px 16px rgba(62, 35, 24, 0.12);
+    }
+
+    .con-js .navegacion-principal.abierta {
+        display: block;
+    }
+
+    .con-js .menu-principal {
+        flex-direction: column;
+        gap: 0;
+        font-size: 16px;
+    }
+
+    /* Áreas táctiles de al menos 44px de alto. */
+    .con-js .menu-principal a {
+        display: block;
+        padding: 12px 4px;
+    }
+
+    .con-js .menu-principal a[aria-current="page"] {
+        border-bottom: 0;
+        border-left: 3px solid var(--secundario-claro);
+        padding-left: 12px;
     }
 }
 
@@ -323,3 +464,31 @@ h1, h2 {
         transition-duration: 0.01ms !important;
     }
 }
+
+/* =========================================================
+   AVISOS — notificaciones en la interfaz (js/modulos/notificaciones.js)
+   Pegar al FINAL de css/base.css
+   ========================================================= */
+.avisos {
+    position: fixed;
+    right: var(--md);
+    bottom: var(--md);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: min(360px, calc(100vw - 2 * var(--md)));
+}
+
+.aviso {
+    padding: 12px var(--md);
+    border-left: 4px solid var(--secundario);
+    background: var(--blanco);
+    color: var(--texto);
+    box-shadow: 0 4px 16px rgba(62, 35, 24, 0.2);
+    font-family: var(--fuente-texto);
+    font-size: 14px;
+}
+
+.aviso--exito { border-left-color: var(--secundario); }
+.aviso--error { border-left-color: #b3261e; }

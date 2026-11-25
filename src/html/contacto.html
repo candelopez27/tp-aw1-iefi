@@ -3,36 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/base.css">
-    <link rel="stylesheet" href="./css/contacto.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/contacto.css">
     <title>Contacto - Mola Eventos</title>
 </head>
 <body>
-    <header class="encabezado">
-        <a href="./index.html">
-            <img src="./recursos/imagenes/logo.png" alt="Logo de mola eventos" width="100">
+    <header class="encabezado-sitio">
+        <a class="enlace-logo" href="./index.html">
+            <img src="../recursos/imagenes/logo.png" alt="Mola Eventos, ir al inicio" width="100">
         </a>
-        <nav aria-label="Navegación principal">
-            <ul class="menu">
+        <button type="button" class="boton-menu" id="boton-menu" aria-expanded="false" aria-controls="navegacion-principal">
+            <span class="boton-menu-icono" aria-hidden="true"></span>
+            <span class="sr-only">Menú</span>
+        </button>
+        <nav class="navegacion-principal" id="navegacion-principal" aria-label="Navegación principal">
+            <ul class="menu-principal">
                 <li><a href="./index.html">Inicio</a></li>
                 <li><a href="./catalogo.html">Catálogo</a></li>
                 <li><a href="./servicios.html">Servicios</a></li>
                 <li><a href="./sobre-nosotros.html">Sobre nosotros</a></li>
-                <li><a href="./contacto.html">Contacto</a></li>
+                <li><a href="./contacto.html" aria-current="page">Contacto</a></li>
             </ul>
         </nav>
-        <div class="acciones">    
+        <div class="acciones-encabezado">
             <a class="boton boton-oscuro" href="./catalogo.html">Ver catálogo</a>
             <a href="./cotizacion.html" aria-label="Ver carrito de compras">
-                <img class="icono-carrito" src="./recursos/imagenes/carrito-de-compras.png" alt="icono de carrito de compras" width="30">
+                <img class="icono-carrito" src="../recursos/imagenes/carrito-de-compras.png" alt="" width="30">
             </a>
         </div>
     </header>
 
-    <main class="contenedor-principal">
+    <main class="contenedor-contacto">
         <!-- Navegación interna / Migas de pan -->
-        <nav class="migas-pan" aria-label="Navegación de ubicación">
-            <p><small><a href="./index.html">INICIO</a> / <span>CONTACTO</span></small></p>
+        <nav class="migas-pan" aria-label="Ruta de navegación">
+            <p><small><a href="./index.html">INICIO</a> / <span aria-current="page">CONTACTO</span></small></p>
         </nav>
 
         <header class="encabezado-contacto">
@@ -44,47 +48,51 @@
 
         <div class="grid-contacto">
             <!-- COLUMNA IZQUIERDA: CANALES -->
-            <aside class="columna-info-contacto">
+            <div class="columna-info-contacto">
                 <section class="card-canales">
                     <h2>Canales de atención directa</h2>
                     
                     <div class="canal-item">
                         <div>
-                            <h4>TELÉFONO &amp; WHATSAPP</h4>
-                            <a href="tel:+543517027534">+54 351 7027534</a>
-                            <a href="https://wa.me/3517027534" class="link-wa" target="_blank" rel="noopener noreferrer">ESCRIBIR POR WHATSAPP →</a>
+                            <h3>TELÉFONO &amp; WHATSAPP</h3>
+                            <address>
+                                <a href="tel:+543517027534">+54 351 7027534</a>
+                                <a href="https://wa.me/5493517027534" class="link-wa" target="_blank" rel="noopener noreferrer">ESCRIBIR POR WHATSAPP →</a>
+                            </address>
                         </div>
                     </div>
 
                     <div class="canal-item">
                         <div>
-                            <h4>CORREO ELECTRÓNICO</h4>
-                            <a href="mailto:livingsmola@gmail.com">livingsmola@gmail.com</a>
+                            <h3>CORREO ELECTRÓNICO</h3>
+                            <address>
+                                <a href="mailto:livingsmola@gmail.com">livingsmola@gmail.com</a>
+                            </address>
                             <p><small>Atención corporativa y particulares</small></p>
                         </div>
                     </div>
 
                     <div class="canal-item">
                         <div>
-                            <h4>ÁREA DE COBERTURA</h4>
+                            <h3>ÁREA DE COBERTURA</h3>
                             <p>Córdoba Capital, Sierras Chicas y alrededores, Argentina</p>
                         </div>
                     </div>
 
                     <div class="canal-item">
                         <div>
-                            <h4>HORARIO DE ATENCIÓN</h4>
+                            <h3>HORARIO DE ATENCIÓN</h3>
                             <p><strong>Lunes a Viernes de 9:00 a 18:00 hs</strong></p>
                             <p><small>Sábados de 9:00 a 14:00 hs</small></p>
                         </div>
                     </div>
 
                     <div class="bloque-asesoria">
-                        <h4>Asesoramiento Personalizado</h4>
+                        <h3>Asesoramiento Personalizado</h3>
                         <p>Acompañamos a wedding planners, empresas y particulares con planos de distribución, selección curada de texturas y logística integral.</p>
                     </div>
                 </section>
-            </aside>
+            </div>
 
             <!-- COLUMNA DERECHA: FORMULARIO DETALLADO -->
             <section class="columna-formulario">
@@ -172,16 +180,16 @@
         </section>
     </main>
 
-    <footer class="pie">
-        <div class="pie-contenido">
+    <footer class="pie-sitio">
+        <div class="pie-sitio-contenido">
             <!-- Columna 1: logo y copyright -->
             <div>
-                <img src="./recursos/imagenes/logo.png" alt="logo de mola, solo letras" width="100">
+                <img src="../recursos/imagenes/logo.png" alt="logo de mola, solo letras" width="100">
                 <p>&copy; 2026 Mola Eventos. Todos los derechos reservados.</p>
             </div>
             <!-- Columna 2: Navegación -->
             <div>
-                <h3>Navegación</h3>
+                <h2 class="pie-sitio-titulo">Navegación</h2>
                 <ul>
                     <li><a href="./index.html">Inicio</a></li>
                     <li><a href="./catalogo.html">Catálogo</a></li>
@@ -192,13 +200,16 @@
             </div>
             <!-- Columna 3: contacto -->
             <div>
-                <h3>Contacto</h3>
-                <p>+54 351 7027534</p>
-                <p>Instagram/ Facebook: @molaeventos.cba</p>
-                <p>livingsmola@gmail.com</p>
-                <p>Córdoba, Argentina</p>
+                <h2 class="pie-sitio-titulo">Contacto</h2>
+                <address>
+                    <p>+54 351 7027534</p>
+                    <p>Instagram/ Facebook: @molaeventos.cba</p>
+                    <p>livingsmola@gmail.com</p>
+                    <p>Córdoba, Argentina</p>
+                </address>
             </div>
         </div>
     </footer>
+    <script type="module" src="../js/menu.js"></script>
 </body>
 </html>

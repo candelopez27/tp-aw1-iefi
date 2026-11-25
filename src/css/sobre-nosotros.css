@@ -4,19 +4,8 @@
     padding: 40px var(--gutter) var(--xxl);
 }
 
-.migas-pan {
-    margin-bottom: 24px;
-    color: var(--texto-suave);
-}
 
-.migas-pan a:hover {
-    color: var(--primario);
-}
 
-.migas-pan span {
-    color: var(--primario);
-    font-weight: 600;
-}
 
 .encabezado-nosotros {
     position: relative;
@@ -329,39 +318,11 @@
 }
 
 @media (max-width: 767px) {
-    .encabezado {
-        flex-wrap: nowrap;
-        padding: 8px var(--md);
-    }
 
-    .encabezado > a,
-    .acciones {
-        flex: 0 0 auto;
-    }
 
-    .encabezado nav {
-        min-width: 0;
-        flex: 1;
-        overflow: hidden;
-    }
 
-    .menu {
-        width: 100%;
-        max-width: none;
-        gap: 12px;
-        overflow-x: auto;
-        white-space: nowrap;
-        font-size: 12px;
-        scrollbar-width: none;
-    }
 
-    .menu::-webkit-scrollbar {
-        display: none;
-    }
 
-    .acciones .boton-oscuro {
-        display: none;
-    }
 
     .contenedor-nosotros {
         padding: 24px var(--md) 56px;

@@ -1,27 +1,26 @@
 /* ===== PÁGINA DE CONTACTO (contacto.css) ===== */
 
+/* 0. Contenedor principal: mismo criterio de ancho y espaciado que el resto
+      de las páginas (.contenedor-servicios, .contenedor-nosotros, etc.) */
+.contenedor-contacto {
+    max-width: var(--ancho-max);
+    margin: 0 auto;
+    padding: 40px var(--gutter) var(--xxl);
+}
+
+@media (max-width: 767px) {
+    .contenedor-contacto {
+        padding: 24px var(--md) 56px;
+    }
+}
+
 /* 1. Encabezado de la página */
-.migas-pan {
-    margin: 5px 0 20px 5px;
-    color: var(--texto-suave);
-}
 
-.migas-pan a {
-    color: var(--texto-suave);
-    text-decoration: none;
-}
 
-.migas-pan a:hover {
-    color: var(--primario);
-}
 
-.migas-pan span {
-    color: var(--primario);
-    font-weight: 600;
-}
 
 .encabezado-contacto {
-    margin: 5px 0 20px 5px;
+    margin: 0 0 20px;
     max-width: 700px;
 }
 
@@ -76,7 +75,6 @@
 /* 3. Columna Izquierda: Canales de atención */
 .columna-info-contacto {
     display: flex;
-    margin:10px;
     flex-direction: column;
     gap: 24px;
 }
@@ -105,7 +103,7 @@
     padding-bottom: 0;
 }
 
-.canal-item h4 {
+.canal-item h3 {
     font-size: 12px;
     color: var(--secundario);
     letter-spacing: 0.05em;
@@ -147,7 +145,7 @@
     margin-top: 12px;
 }
 
-.bloque-asesoria h4 {
+.bloque-asesoria h3 {
     color: var(--primario);
     font-size: 15px;
     margin-bottom: 6px;

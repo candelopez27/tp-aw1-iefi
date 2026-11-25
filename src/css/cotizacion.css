@@ -4,19 +4,8 @@
     padding: 40px var(--gutter) var(--xxl);
 }
 
-.migas-pan {
-    margin-bottom: 24px;
-    color: var(--texto-suave);
-}
 
-.migas-pan a:hover {
-    color: var(--primario);
-}
 
-.migas-pan span {
-    color: var(--primario);
-    font-weight: 600;
-}
 
 .encabezado-cotizacion {
     position: relative;
@@ -112,8 +101,9 @@
     transform: scale(1.05);
 }
 
-.item-carrito h3 {
+.item-carrito .nombre-item {
     min-width: 0;
+    font-weight: 700;
     color: var(--primario);
     font-size: 14px;
     line-height: 1.35;
@@ -410,7 +400,7 @@
         height: 72px;
     }
 
-    .item-carrito h3 {
+    .item-carrito .nombre-item {
         grid-area: nombre;
     }
 
@@ -438,39 +428,11 @@
 }
 
 @media (max-width: 767px) {
-    .encabezado {
-        flex-wrap: nowrap;
-        padding: 8px var(--md);
-    }
 
-    .encabezado > a,
-    .acciones {
-        flex: 0 0 auto;
-    }
 
-    .encabezado nav {
-        min-width: 0;
-        flex: 1;
-        overflow: hidden;
-    }
 
-    .menu {
-        width: 100%;
-        max-width: none;
-        gap: 12px;
-        overflow-x: auto;
-        white-space: nowrap;
-        font-size: 12px;
-        scrollbar-width: none;
-    }
 
-    .menu::-webkit-scrollbar {
-        display: none;
-    }
 
-    .acciones .boton-oscuro {
-        display: none;
-    }
 
     .contenedor-cotizacion {
         padding: 24px var(--md) 56px;
@@ -498,4 +460,57 @@
     .total-destacado .monto {
         font-size: 32px;
     }
+}
+
+/* =========================================================
+   FLUJO DE COTIZACIÓN — errores de validación, estado vacío,
+   confirmación de envío. Pegar al FINAL de css/cotizacion.css
+   ========================================================= */
+.error-campo {
+    margin-top: 4px;
+    color: #b3261e;
+    font-size: 13px;
+}
+
+.datos-evento input[aria-invalid="true"],
+.observaciones textarea[aria-invalid="true"] {
+    border-color: #b3261e;
+    outline-color: #b3261e;
+}
+
+.carrito-vacio {
+    padding: var(--md);
+    color: var(--texto-suave);
+}
+
+.carrito-vacio a {
+    color: var(--texto);
+    text-decoration: underline;
+}
+
+.btn-cotizar:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.nota-envio {
+    margin-top: 8px;
+    color: var(--texto-suave);
+    text-align: center;
+}
+
+.confirmacion {
+    margin-top: var(--xl);
+    padding: var(--gutter);
+    border: 1px solid var(--secundario-claro);
+    border-left: 4px solid var(--secundario);
+    background: var(--superficie);
+    display: grid;
+    gap: var(--md);
+    justify-items: start;
+}
+
+.confirmacion a {
+    color: var(--texto);
+    text-decoration: underline;
 }

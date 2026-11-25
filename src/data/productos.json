@@ -6,7 +6,7 @@
         "categoria": "livings",
         "precio": 40000,
         "stock": 8,
-        "imagen": "./recursos/imagenes/grilla-productos/Juego de Living Estándar – Capacidad 10 personas 2.jpg",
+        "imagen": "./recursos/imagenes/grilla-productos/living-estandar-2.jpg",
         "alt": "Vista general del Juego de Living Estándar",
         "descripcion": "Juego de living con capacidad para 10 personas.",
         "incluye": [
@@ -34,7 +34,7 @@
         "categoria": "livings",
         "precio": 46000,
         "stock": 8,
-        "imagen": "./recursos/imagenes/grilla-productos/Livings Confort.jpg",
+        "imagen": "./recursos/imagenes/grilla-productos/living-confort-1.jpg",
         "alt": "Vista general del Juego de Living Confort",
         "descripcion": "Juego de living Confort con capacidad para 10 personas.",
         "incluye": [
@@ -61,7 +61,7 @@
         "categoria": "livings",
         "precio": 52000,
         "stock": 20,
-        "imagen": "./recursos/imagenes/grilla-productos/Juego de Living Premium – Capacidad 12 personas.jpg",
+        "imagen": "./recursos/imagenes/grilla-productos/living-premium-1.jpg",
         "alt": "Vista general del Juego de Living Premium",
         "descripcion": "Juego de living Premium con capacidad para 12 personas.",
         "incluye": [

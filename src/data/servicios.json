@@ -1,0 +1,5 @@
+[
+    { "id": "flete", "nombre": "Flete", "precio": 15000 },
+    { "id": "armado", "nombre": "Armado", "precio": 12000 },
+    { "id": "desarmado", "nombre": "Desarmado", "precio": 10000 }
+]

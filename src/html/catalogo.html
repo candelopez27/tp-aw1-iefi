@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="./css/base.css">
-    <link rel="stylesheet" href="./css/catalogo.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/catalogo.css">
 
     <title>Catálogo | Mola Eventos</title>
 </head>
@@ -14,43 +14,29 @@
 <body>
 
     <!-- ENCABEZADO -->
-    <header class="encabezado">
-
-        <a href="./index.html">
-            <img
-                src="./recursos/imagenes/logo.png"
-                alt="Logo de Mola Eventos"
-                width="100"
-            >
+    <header class="encabezado-sitio">
+        <a class="enlace-logo" href="./index.html">
+            <img src="../recursos/imagenes/logo.png" alt="Mola Eventos, ir al inicio" width="100">
         </a>
-
-        <nav aria-label="Navegación principal">
-            <ul class="menu">
+        <button type="button" class="boton-menu" id="boton-menu" aria-expanded="false" aria-controls="navegacion-principal">
+            <span class="boton-menu-icono" aria-hidden="true"></span>
+            <span class="sr-only">Menú</span>
+        </button>
+        <nav class="navegacion-principal" id="navegacion-principal" aria-label="Navegación principal">
+            <ul class="menu-principal">
                 <li><a href="./index.html">Inicio</a></li>
-                <li><a href="./catalogo.html">Catálogo</a></li>
+                <li><a href="./catalogo.html" aria-current="page">Catálogo</a></li>
                 <li><a href="./servicios.html">Servicios</a></li>
                 <li><a href="./sobre-nosotros.html">Sobre nosotros</a></li>
                 <li><a href="./contacto.html">Contacto</a></li>
             </ul>
         </nav>
-
-        <div class="acciones">
-
-            <a class="boton boton-oscuro" href="./catalogo.html">
-                Ver catálogo
+        <div class="acciones-encabezado">
+            <a class="boton boton-oscuro" href="./catalogo.html">Ver catálogo</a>
+            <a href="./cotizacion.html" aria-label="Ver carrito de compras">
+                <img class="icono-carrito" src="../recursos/imagenes/carrito-de-compras.png" alt="" width="30">
             </a>
-
-            <a href="./cotizacion.html" aria-label="Ver pedido">
-                <img
-                    class="icono-carrito"
-                    src="./recursos/imagenes/carrito-de-compras.png"
-                    alt="Carrito de compras"
-                    width="30"
-                >
-            </a>
-
         </div>
-
     </header>
 
 
@@ -62,11 +48,11 @@
 
             <div class="introduccion-catalogo">
 
-                <nav class="migas-pan" aria-label="Navegación de ubicación">
+                <nav class="migas-pan" aria-label="Ruta de navegación">
                     <p>
                         <small>
                             <a href="./index.html">INICIO</a> /
-                            <span>CATÁLOGO</span>
+                            <span aria-current="page">CATÁLOGO</span>
                         </small>
                     </p>
                 </nav>
@@ -81,21 +67,23 @@
 
             </div>
 
-            <form class="buscador-catalogo" id="formulario-busqueda">
+            <search>
+                <form class="buscador-catalogo" id="formulario-busqueda">
 
-                <label for="buscar-producto">
-                    Buscar productos
-                </label>
+                    <label for="buscar-producto">
+                        Buscar productos
+                    </label>
 
-                <input
-                    type="search"
-                    id="buscar-producto"
-                    name="busqueda"
-                    class="campo-busqueda"
-                    placeholder="¿Qué estás buscando?"
-                >
+                    <input
+                        type="search"
+                        id="buscar-producto"
+                        name="busqueda"
+                        class="campo-busqueda"
+                        placeholder="¿Qué estás buscando?"
+                    >
 
-            </form>
+                </form>
+            </search>
 
         </section>
 
@@ -105,7 +93,7 @@
 
 
             <!-- PANEL DE FILTROS -->
-            <aside class="panel-filtros">
+            <aside class="panel-filtros" aria-label="Filtros del catálogo">
 
                 <!-- FILTRO POR CATEGORÍA -->
                 <section class="grupo-filtro">
@@ -310,11 +298,11 @@
 
 
             <!-- RESUMEN DEL PEDIDO -->
-            <aside class="resumen-pedido" id="resumen-pedido">
+            <aside class="resumen-pedido" id="resumen-pedido" aria-labelledby="id-titulo-pedido">
 
                 <div class="encabezado-pedido">
 
-                    <h2 class="titulo-pedido">
+                    <h2 class="titulo-pedido" id="id-titulo-pedido">
                         Tu pedido
                     </h2>
 
@@ -375,15 +363,15 @@
 
 
     <!-- PIE DE PÁGINA -->
-    <footer class="pie">
+    <footer class="pie-sitio">
 
-        <div class="pie-contenido">
+        <div class="pie-sitio-contenido">
 
             <!-- LOGO Y COPYRIGHT -->
             <div>
 
                 <img
-                    src="./recursos/imagenes/logo.png"
+                    src="../recursos/imagenes/logo.png"
                     alt="Logo de Mola Eventos"
                     width="100"
                 >
@@ -398,7 +386,7 @@
             <!-- NAVEGACIÓN -->
             <div>
 
-                <h3>Navegación</h3>
+                <h2 class="pie-sitio-titulo">Navegación</h2>
 
                 <ul>
                     <li><a href="./index.html">Inicio</a></li>
@@ -414,12 +402,14 @@
             <!-- CONTACTO -->
             <div>
 
-                <h3>Contacto</h3>
+                <h2 class="pie-sitio-titulo">Contacto</h2>
 
-                <p>3517027534</p>
-                <p>Instagram / Facebook: @molaeventos.cba</p>
-                <p>livingsmola@gmail.com</p>
-                <p>Córdoba, Argentina</p>
+                <address>
+                    <p>3517027534</p>
+                    <p>Instagram / Facebook: @molaeventos.cba</p>
+                    <p>livingsmola@gmail.com</p>
+                    <p>Córdoba, Argentina</p>
+                </address>
 
             </div>
 
@@ -429,8 +419,9 @@
 
 
     <!-- JAVASCRIPT DEL CATÁLOGO -->
-    <script type="module" src="./js/catalogo.js"></script>
+    <script type="module" src="../js/catalogo.js"></script>
 
+    <script type="module" src="../js/menu.js"></script>
 </body>
 
 </html>

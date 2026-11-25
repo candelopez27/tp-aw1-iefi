@@ -1,0 +1,82 @@
+# =====================================================
+# CI/CD — Mola Eventos
+#   CI: en cada push y pull request ejecuta los tests de Node.
+#   CD: si estamos en "main" y los tests pasaron, despliega a Vercel.
+# Documentación: docs/ci-cd.md
+# =====================================================
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:        # permite ejecutarlo a mano desde la pestaña Actions
+
+# Principio de mínimo privilegio: el workflow solo puede leer el repositorio.
+permissions:
+  contents: read
+
+# Si llegan dos pushes seguidos, se cancela la ejecución vieja de esa rama.
+concurrency:
+  group: ci-cd-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ---------------------------------------------------
+  # CI — Integración continua: testing unitario nativo
+  # ---------------------------------------------------
+  test:
+    name: Tests (node:test)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # No hace falta "npm install": los tests usan solo módulos nativos de Node
+      # (node:test y node:assert), sin dependencias externas.
+      - name: Ejecutar tests
+        run: npm test
+
+  # ---------------------------------------------------
+  # CD — Despliegue continuo a Vercel (solo si los tests pasaron)
+  # ---------------------------------------------------
+  deploy:
+    name: Desplegar a Vercel
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Si todavía no se cargaron los secrets, el job termina en verde pero avisa.
+      - name: Verificar credenciales de Vercel
+        id: credenciales
+        run: |
+          if [ -z "$VERCEL_TOKEN" ] || [ -z "$VERCEL_ORG_ID" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
+            echo "configuradas=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::Faltan los secrets VERCEL_TOKEN, VERCEL_ORG_ID o VERCEL_PROJECT_ID: se omite el despliegue."
+          else
+            echo "configuradas=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Desplegar a producción
+        if: steps.credenciales.outputs.configuradas == 'true'
+        run: npx --yes vercel@latest deploy --prod --yes --token "$VERCEL_TOKEN"
